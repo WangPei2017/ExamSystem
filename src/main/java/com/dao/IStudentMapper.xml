@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.IStudentMapper">
+	<insert id="addStudent" parameterType="Student" >
+		insert into t_student (sid,password,sname,idNumber,birthday,level,sex,phone,email,province,photo,status,reason) 
+		values (#{sid},#{password},#{sname},#{idNumber},#{birthday},#{level},#{sex},#{phone},#{email},#{province},#{photo},#{status},#{reason})
+	</insert>
+	
+	<delete id="deleteStudent" parameterType="String">
+		delete from t_student  where sid = #{0} 
+	</delete>
+	
+	<update id="modifyStudent" parameterType="Student">
+		update t_student 
+	      <set>
+		          password=#{password},
+		          sname=#{sname},
+		          idNumber=#{idNumber},
+		          birthday= #{birthday},
+		          level=#{level},
+		          sex=#{sex},
+		          phone=#{phone},
+		          email=#{email},
+		          province=#{province},
+		          photo=#{photo},
+		          status=#{status},
+		          reason=#{reason}
+		  </set>
+		<where>
+		sid = #{sid}
+		</where>
+	</update>
+		<update id="upateStudent" parameterType="Student">
+		update t_student 
+	      <set>
+		          password=#{password},
+		          sname=#{sname},
+		          idNumber=#{idNumber},
+		          birthday= #{birthday},
+		          level=#{level},
+		          sex=#{sex},
+		          phone=#{phone},
+		          email=#{email},
+		          province=#{province},
+		          photo=#{photo}
+		  </set>
+		<where>
+		sid = #{sid}
+		</where>
+	</update>
+	
+	<update id="toAudit" parameterType="Student">
+		update t_student 
+	      <set>
+		    
+		          status=#{status},
+		      
+		          reason=#{reason}
+		  </set>
+		<where>
+		sid = #{sid}
+		</where>
+	</update>
+	
+	<select id="findStudentById" parameterType="Student" resultType="Student">
+	SELECT 	sid, PASSWORD,sname,idNumber,date_format(birthday,'%Y-%m-%d') birthday,level,sex,phone,email,province,photo,STATUS,reason  
+		FROM t_student t where sid=#{sid} 
+	</select>
+	
+	   <select id="getStudentInfo" resultType="Student" parameterType="Student">
+			SELECT 	sid, PASSWORD,sname,idNumber,date_format(birthday,'%Y-%m-%d') birthday,LEVEL, 
+				sex,phone,email,province,photo,STATUS,reason
+				
+				FROM 
+				t_student where sid=#{sid} and password=#{password}
+	   </select>
+	   
+	<select id="getAllStudent" parameterType="PageBean" resultType="Student">
+		SELECT 	sid, PASSWORD,sname,idNumber,date_format(birthday,'%Y-%m-%d') birthday,level,sex,phone,email,province,photo,status,reason  
+		FROM t_student
+		<where>
+			<if test="map.name!=null and map.name!='' ">
+				sname like '%${map.name}%'
+			</if>
+		</where>
+		limit #{startRow}, #{endRow}
+	</select>
+	
+	<select id="getStudentCount" parameterType="PageBean" resultType="int">
+	select count(sid) from t_student <where>
+	<if test="map.name!=null and map.name!=''">
+		sname like '%${map.name}%'
+	</if>
+	</where>
+	</select>   
+
+	<select id="countIdNumber" parameterType="String" resultType="int">
+	select count(sid) from t_student <where>
+		idNumber = #{idNumber}
+	</where>
+	</select>  
+	
+	<select id="countStudentById" parameterType="String" resultType="int">
+	select count(sid) from t_student <where>
+		sid = #{sid}
+	</where>
+	</select>
+</mapper>

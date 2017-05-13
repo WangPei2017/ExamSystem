@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>新增图片</title>
+</head>
+<body>
+<div class="pd-20">
+	<form action="" method="post" class="form form-horizontal" id="form-article-add">
+		<div class="row cl">
+            <div class="col-2"></div>
+            <div class="col-8">
+                
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row cl">
+            <div class="col-1"></div>
+            <label class="form-label col-2"></label>
+            <div class="formControls col-2">
+                考场1              
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                考场2
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">所在建筑名称</label>
+            <div class="formControls col-4">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">                
+            </div>
+            <div class="formControls col-4">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">考场所属者和管理者（部门/单位名称）</label>
+            <div class="formControls col-4">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">                
+            </div>
+            <div class="formControls col-4">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">所在楼层</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">所在楼层是否有洗手间</label>
+            <div class="formControls col-2 skin-minimal">
+                <div class="radio-box">
+                  <input type="radio" id="sex-1" name="sex" datatype="*" nullmsg="请选择性别！">
+                  <label for="sex-1">是</label>
+                </div>
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="sex">
+                  <label for="sex-2">否</label>
+                </div>               
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2 skin-minimal">
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="sex2" datatype="*" nullmsg="请选择性别！">
+                  <label for="sex-1">是</label>
+                </div>
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="sex2">
+                  <label for="sex-2">否</label>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">考场所在房间门牌号</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">考位数量</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">考场内监控头数量/监控范围</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">出入口数量</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">是否有时钟</label>
+            <div class="formControls col-2 skin-minimal">
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="clock1" datatype="*" nullmsg="请选择性别！">
+                  <label for="sex-1">是</label>
+                </div>
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="clock1">
+                  <label for="sex-2">否</label>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2 skin-minimal">
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="clock2" datatype="*" nullmsg="请选择性别！">
+                  <label for="sex-1">是</label>
+                </div>
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="clock2">
+                  <label for="sex-2">否</label>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">是否有空调/通风系统</label>
+            <div class="formControls col-2 skin-minimal">
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="condisystem1" datatype="*" nullmsg="请选择性别！">
+                  <label for="sex-1">是</label>
+                </div>
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="condisystem1">
+                  <label for="sex-2">否</label>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2 skin-minimal">
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="condisystem2" datatype="*" nullmsg="请选择性别！">
+                  <label for="sex-1">是</label>
+                </div>
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="condisystem2">
+                  <label for="sex-2">否</label>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">考位桌面有效书写面积</label>
+            <div class="formControls col-2">
+                长<input type="text" class="input-text" style="width:60px;" value="" placeholder="单位cm" id="" name="">
+                宽<input type="text" class="input-text" style="width:60px;" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                长<input type="text" class="input-text" style="width:60px;" value="" placeholder="单位cm" id="" name="">
+                宽<input type="text" class="input-text" style="width:60px;" value="" placeholder="单位cm" id="" name=""> 
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">相连考位之间是否有割断</label>
+           <div class="formControls col-2 skin-minimal">
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="splitChe1" datatype="*" nullmsg="请选择性别！">
+                  <label for="sex-1">是</label>
+                </div>
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="splitChe1">
+                  <label for="sex-2">否</label>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2 skin-minimal">
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="splitChe2" datatype="*" nullmsg="请选择性别！">
+                  <label for="sex-1">是</label>
+                </div>
+                <div class="radio-box">
+                  <input type="radio" id="sex-2" name="splitChe2">
+                  <label for="sex-2">否</label>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">隔断在桌面之上的高度</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">考位之间通道宽度</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">等候室监控头数量/监控范围</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">等候室的出入口数量</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">等候室门牌号</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">等候室面积</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">储物柜数量</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">等候椅数量</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">是否与考场通过监考室相连</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">监考室监控头数量/监控范围描述</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">监考室门牌号</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">监考室面积</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">管理员工作站数量</label>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">                
+            </div>
+            <div class="col-2"></div>
+            <div class="formControls col-2">
+                <input type="text" class="input-text" value="" placeholder="单位cm" id="" name="">
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-3">选择噪音情况</label>
+            <div class="formControls col-4 skin-minimal">
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">上下课铃声</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">建筑施工</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">课间铃声</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">舞会</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">操场或运动会</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">主要街道交通噪音</label>
+                </div>                
+            </div>
+            <div class="formControls col-4 skin-minimal">
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">上下课铃声</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">建筑施工</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">课间铃声</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">舞会</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">操场或运动会</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="checkbox-1">
+                    <label for="checkbox-1">主要街道交通噪音</label>
+                </div>                
+            </div>
+            <div class="col-1"></div>
+        </div>
+	</form>
+</div>
+</div>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script> 
+<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script> 
+<script type="text/javascript" src="js/H-ui.js"></script> 
+<script type="text/javascript" src="js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+        checkboxClass: 'icheckbox-blue',
+        radioClass: 'iradio-blue',
+        increaseArea: '20%'
+    });
+
+})( jQuery );
+</script>
+</body>
+</html>

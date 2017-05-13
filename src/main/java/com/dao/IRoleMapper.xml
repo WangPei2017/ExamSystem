@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.IRoleMapper">
+	<select id="getAllRole" parameterType="PageBean" resultType="Role">
+		<if test="endRow!=null and endRow!=0">
+		select 	id,name from t_sys_role 
+		limiT #{StartRow}, #{endRow}
+		</if>
+		<if test="endRow==null or endRow==0">
+			select k.id,k.name from t_sys_role k
+		</if>
+	</select>
+	<select id="getRoleCount" parameterType="PageBean" resultType="int">
+		select count(t.id) from t_sys_role t
+	</select>
+	<select id="getRoleIdByUserId" parameterType="String" resultType="String">
+		select t.roleid from t_sys_user_role t where t.userid =#{0}
+	</select>
+	<update id="updateRole" parameterType="Role">
+		update t_sys_role t
+		<set>
+			<if test="name!=null and name!='' ">t.name=#{name}</if>
+		</set>
+		<where>
+			t.id=#{id}
+		</where>
+	</update>
+	<insert id="addRole" parameterType="Role">
+		insert into t_sys_role (NAME)
+		values (#{name})
+	</insert>
+	<insert id="addRoleMenu" parameterType="String">
+		insert into t_sys_role_menu (ROLE_ID,MENU_ID) values(#{0},#{1})
+	</insert>
+	<delete id="deleteRole">
+		delete from t_sys_role where id=#{0}
+	</delete>
+	<delete id="deleteRoleMenu">
+		delete from t_sys_role_menu where role_id=#{0}
+	</delete>
+	<select id="getParentMenuAuthTree" resultType="Tree">
+		select t.id,t.name
+		text,t.iconcls iconCls from t_sys_menu t where t.parentid=0 order by
+		t.levelid
+	</select>
+	<select id="getMenuAuthTreeByParentId" resultType="Tree">
+		select t.id,t.name text,t.iconcls iconCls,if(m.id, 'true','false')
+		attributes from t_sys_menu t left join t_sys_role_menu m on t.id=m.menu_id and m.role_id=#{1} where t.parentid=#{0} order by t.levelid
+	</select>
+</mapper>

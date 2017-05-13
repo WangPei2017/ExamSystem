@@ -1,0 +1,606 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body{
+}
+.con-title{
+    background-color:#D5D5D5;
+    line-height:40px;
+    padding-left:20px;
+    text-align: center;
+}
+.con-title .con-title-close{
+    float:right;
+    font-size: 30px;
+    color : red;
+    text-align: center;
+}
+.con-title .con-title-close:hover{
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+</style>
+<title>新增图片</title>
+</head>
+<body>
+<div>
+   <div id="container"></div> 
+</div>
+
+<div style="height:40px;padding-top:10px;padding-left:20px;">
+    <button class="btn btn-primary radius" id="add-new-place"><i class="Hui-iconfont">&#xe600;</i> 添加考试场地</button>
+</div>
+<div style="height:40px;padding-left:20px;">
+    <button class="btn btn-primary radius" id="submit"><i class="Hui-iconfont">&#xe600;</i> 提交考试场地</button>
+</div>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script> 
+<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script> 
+<script type="text/javascript" src="js/H-ui.js"></script> 
+<script type="text/javascript" src="js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+!(function($){
+    function getDomLeft($dom){
+        var left = Number($dom.css('left').replace('px',''));
+        var width = $dom.width();
+        return left+width;
+    };
+    $.fn.extend({
+        addNewPlace : function(param){
+            var title = param.title;
+            var index = param.index;
+            var width = param.width;
+            var gap = param.gap;
+            var con_box = $('<div class="con-box" id="con-box-'+index+'"></div>')
+                .css('margin','0 20px')
+                .css('border','1px solid #ccc')
+                .css('padding-bottom','20px')
+                .css('margin-bottom','20px')
+                .appendTo($(this));
+           var con_title = $('<div class="con-title"></div')
+                .text(title)
+                .height(40)
+                .appendTo(con_box);
+            var con_title_time = $('<span class="con-title-close">&times;</span>')
+                .width(40)
+                .height(40)
+                .appendTo(con_title);
+            var con_form = $('<form action="" method="post" class="my-form form form-horizontal" id="con-form-'+index+'">').appendTo(con_box);
+            var var_index = 1;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">所在建筑名称：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写所在建筑名称" placeholder="填写所在建筑名称" id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+            var var_index = 2;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">考场所属者和管理者（部门/单位名称）：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" placeholder="填写考场所属者和管理者（部门/单位名称）" id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+            var var_index = 3;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">所在楼层：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写所在楼层" placeholder="所在楼层" id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+            var var_index = 4;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">所在楼层是否有洗手间：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="请选择是否有洗手间">';
+                      s += '<label for="y'+field_index+'">是</label>';
+                    s += '</div>';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">否</label>';
+                    s += '</div>';               
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+            var var_index = 5;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">考场所在房间门牌号：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写考场所在房间门牌号" placeholder="所在楼层" id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form); 
+
+            var var_index = 6;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">考位数量：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写考位数量" placeholder="考位数量" id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+            var var_index = 7;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">考场内监控头数量/监控范围：</label>';
+                s += '<label class="form-label col-1">数量</label>';
+                s += '<div class="formControls col-5">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写考场内监控头数量" placeholder="考场内监控头数量" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+            var var_index = 8;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3"></label>';
+                s += '<label class="form-label col-1">监控范围</label>';
+                s += '<div class="formControls col-5">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写考场内监控范围" placeholder="考场内监控范围" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+            var var_index = 9;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">出入口数量：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写出入口数量" placeholder="出入口数量  e.g. 出口2 , 入口2" id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+            var var_index = 10;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">是否有时钟：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="请选择是否有时钟">';
+                      s += '<label for="y'+field_index+'">是</label>';
+                    s += '</div>';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">否</label>';
+                    s += '</div>';               
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+
+			var var_index = 11;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">是否有空调/通风系统：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="请选择是否有空调/通风系统">';
+                      s += '<label for="y'+field_index+'">是</label>';
+                    s += '</div>';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">否</label>';
+                    s += '</div>';               
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 12;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">考位桌面有效书写面积：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="考位桌面有效书写面积">';
+                      s += '<label for="y'+field_index+'">是</label>';
+                    s += '</div>';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">否</label>';
+                    s += '</div>';               
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 13;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">相连考位之间是否有割断：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="相连考位之间是否有割断">';
+                      s += '<label for="y'+field_index+'">是</label>';
+                    s += '</div>';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">否</label>';
+                    s += '</div>';               
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 14;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">隔断在桌面之上的高度：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="隔断在桌面之上的高度">';
+                      s += '<label for="y'+field_index+'">是</label>';
+                    s += '</div>';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">否</label>';
+                    s += '</div>';               
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 15;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">考位之间通道宽度：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="考位之间通道宽度">';
+                      s += '<label for="y'+field_index+'">是</label>';
+                    s += '</div>';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">否</label>';
+                    s += '</div>';               
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 16;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">等候室监控头数量/监控范围：</label>';
+                s += '<label class="form-label col-1">所有出入口</label>';
+				 s += '<label class="form-label col-1">数量</label>';
+                s += '<div class="formControls col-4">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写所有出入口监控头数量" placeholder="所有出入口监控头数量" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 17;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3"></label>';
+				s += '<label class="form-label col-1"></label>';
+                s += '<label class="form-label col-1">监控范围</label>';
+                s += '<div class="formControls col-4">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写所有出入口监控范围" placeholder="所有出入口监控范围" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 18;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3"></label>';
+				s += '<label class="form-label col-1">所有储物柜</label>';
+                s += '<label class="form-label col-1">数量</label>';
+                s += '<div class="formControls col-4">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写所有储物柜监控数量" placeholder="所有储物柜监控头数量" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 19;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3"></label>';
+				s += '<label class="form-label col-1"></label>';
+                s += '<label class="form-label col-1">监控范围</label>';
+                s += '<div class="formControls col-4">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写所有储物柜监控范围" placeholder="所有储物柜监控范围" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 20;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3"></label>';
+				s += '<label class="form-label col-1">等候区域</label>';
+                s += '<label class="form-label col-1">数量</label>';
+                s += '<div class="formControls col-4">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写等候区域监控数量" placeholder="等候区域监控头数量" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 21;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3"></label>';
+				s += '<label class="form-label col-1"></label>';
+                s += '<label class="form-label col-1">监控范围</label>';
+                s += '<div class="formControls col-4">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写等候区域监控范围" placeholder="等候区域监控范围" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 22;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">等候室的出入口数量：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写等候室的出入口数量" placeholder="等候室的出入口数量  e.g. 出口2 , 入口2" id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 23;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">等候室门牌号：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写等候室门牌号" placeholder="等候室门牌号 " id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 24;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">等候室面积：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写等候室面积" placeholder="等候室面积 " id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 25;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">储物柜数量：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写储物柜数量" placeholder="储物柜数量 " id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 26;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">等候椅数量：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写等候椅数量" placeholder="等候椅数量 " id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 27;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">是否与考场通过监考室相连：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="是否与考场通过监考室相连">';
+                      s += '<label for="y'+field_index+'">是</label>';
+                    s += '</div>';
+                    s += '<div class="radio-box">';
+                      s += '<input type="radio" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">否</label>';
+                    s += '</div>';               
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 28;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">监考室监控头数量/监控范围描述：</label>';
+                s += '<label class="form-label col-1">数量</label>';
+                s += '<div class="formControls col-5">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写监考室监控头数量" placeholder="监考室监控头数量" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 29;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3"></label>';
+                s += '<label class="form-label col-1">监控范围</label>';
+                s += '<div class="formControls col-5">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写监考室监控范围" placeholder="监考室监控范围" id="" name="'+field_index+'"> ';
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 30;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">监考室门牌号：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写监考室门牌号" placeholder="监考室门牌号 " id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 31;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">监考室面积：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写监考室面积" placeholder="监考室面积 " id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 32;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">管理员工作站数量：</label>';
+                s += '<div class="formControls col-6">';
+                    s += '<input type="text" class="input-text" datatype="*1-40" nullmsg="请填写管理员工作站数量" placeholder="管理员工作站数量 " id="" name="'+field_index+'"> ';               
+                s += '</div>';
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+			var var_index = 33;
+            var field_index = 'v_'+index+'_'+var_index;
+            var s = '<div class="row cl">';
+                s += '<label class="form-label col-3">选择噪音情况：</label>';
+                s += '<div class="formControls col-6 skin-minimal">';
+                    s += '<div class="check-box">';
+                      s += '<input type="checkbox" id="y'+field_index+'" name="'+field_index+'" datatype="*" nullmsg="选择噪音情况">';
+                      s += '<label for="y'+field_index+'">上下课铃声</label>';
+                    s += '</div>';
+                    s += '<div class="check-box">';
+                      s += '<input type="checkbox" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">建筑施工</label>';
+                    s += '</div>'; 
+                      s += '<div class="check-box">';
+                      s += '<input type="checkbox" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">课间铃声</label>';
+                    s += '</div>'; 
+                      s += '<div class="check-box">';
+                      s += '<input type="checkbox" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">舞会</label>';
+                    s += '</div>'; 
+                      s += '<div class="check-box">';
+                      s += '<input type="checkbox" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">操场或运动会</label>';
+                    s += '</div>'; 
+                      s += '<div class="check-box">';
+                      s += '<input type="checkbox" id="n'+field_index+'" name="'+field_index+'">';
+                      s += '<label for="n'+field_index+'">主要街道交通噪音</label>';
+                    s += '</div>'; 					
+                s += '</div>';              
+                s += '<div class="col-3"></div>';
+                s += '</div>';
+            var v_row = $(s).appendTo(con_form);
+			
+            con_title_time.bind('click',function(){
+                var that = this;
+                layer.confirm('确认删除该考试场地吗？',{icon:3,title:'系统提示'},function(tindex){
+                    $(that).parent().parent().find('*').unbind();
+                    $(that).parent().parent().remove();
+                    layer.close(tindex);
+                });
+               
+            });
+            var that = this;
+            con_form.find('.skin-minimal input').iCheck({
+                checkboxClass: 'icheckbox-blue',
+                radioClass: 'iradio-blue',
+                increaseArea: '20%'
+            });
+            con_form.Validform({
+                tiptype:2,
+                callback:function(form){
+                    var num = Number($(that).attr('submit-index'));
+                    num ++;
+                    $(that).attr('submit-index',num);
+                    return false;
+                }
+            });
+            var con_boxes = $(this).find('>.con-box');
+            //$(this).width((width+gap+2)*con_boxes.length);
+        }
+    });
+})($);
+$(document).ready(function(){
+    $('.skin-minimal input').iCheck({
+        checkboxClass: 'icheckbox-blue',
+        radioClass: 'iradio-blue',
+        increaseArea: '20%'
+    });
+    
+    var index = 0;
+    $('#add-new-place').bind('click',function(){
+        var param = {
+            title : '考试场地',
+            index : index,
+            width : 800,
+            gap : 20
+        };
+        $('#container').addNewPlace(param);
+        index ++;
+    }).click();
+    $('#submit').bind('click',function(){
+        $('#container').attr('submit-index',0);
+        $('#container').find('.my-form').submit();
+        var num = Number($('#container').attr('submit-index'));
+        var con_boxes = $('#container').find('>.con-box');
+        if(num == con_boxes.length){
+            alert('submit')
+        }
+    });
+});
+</script>
+</body>
+</html>

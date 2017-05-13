@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ISystemUserDaoMapper">
+	<delete id="deleteUser" parameterType="String">
+		delete from t_sys_user 
+		where id =#{id}
+	</delete>
+	<insert id="addUser" parameterType="SysUser">
+	insert into t_sys_user 
+	(name,password,enable)values (#{name},#{password},#{enable})
+	</insert>
+	<update id="updateUser" parameterType="SysUser">
+		update t_sys_user 
+		<set>
+			<if test="name!=null and name!='' "> name=#{name},</if>
+			<if test="password!=null and password!='' ">password=#{password},</if>
+			<if test="enable!=null and enable!='' "> enable=#{enable}</if>
+		</set>
+		<where>
+			id=#{id}
+		</where>
+	</update>
+	<select id="getAllUser" parameterType="PageBean" resultType="SysUser">
+		select id,name,password,enable  from t_sys_user <where>
+		<if test="map.name!=null and map.name!=''">
+			name like '%${map.name}%' 
+		</if>
+		</where>limit #{StartRow}, #{endRow}
+		
+	</select>
+	<select id="getUserCount" parameterType="PageBean" resultType="int">
+		select count(id) from t_sys_user   <where>
+		<if test="map.name!=null and map.name!=''">
+			name like '%${map.name}%'
+		</if></where>
+	</select>
+	
+	
+	<select id="getUserById" parameterType="String" resultType="SysUser">
+	SELECT 	id,NAME,PASSWORD,ENABLE FROM  t_sys_user  WHERE
+	id =#{id}
+	</select>
+	<delete id="deleteUserRole" parameterType="String">
+	delete from t_sys_user_role where userid=#{0}
+	</delete>
+	<insert id="saveUserRole" parameterType="Map">
+	insert into t_sys_user_role (userid,roleid) values(#{userId},#{roleId})
+	</insert>
+</mapper>

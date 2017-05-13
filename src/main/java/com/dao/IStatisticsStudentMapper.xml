@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.IStatisticsStudentMapper">
+	<select id="statisticsByLevel" resultType="StatisticsStudent">
+		select level , count(sid) levelcount from t_student group by level 
+		order by level 
+	</select>
+	<select id="statisticsByProvince" resultType="StatisticsStudent">
+		select province,count(sid) provincecount from t_student group by province 
+		order by province
+	</select>
+	<select id="statisticsByStatus"  resultType="StatisticsStudent">
+		select status ,count(sid) statuscount from t_student group by status
+		order by status
+	</select>
+	
+	
+	
+<!-- 	<select id="getAllStudent" resultType="Student">
+	select 
+	<if test="level!=null and level!='' ">level , count(sid) levelcount ,</if>
+	<if test="province!=null and province!='' ">province , count(sid) provincecount ,</if>
+	<if test="status!=null and status!='' ">status ,count(sid) statuscount</if>
+	 group by 
+	 <if test="level!=null and level!='' ">level ,</if>
+	 <if test="province!=null and province!='' ">province ,</if>
+	 <if test="status!=null and status!='' ">status </if>
+	 order by 
+	 <if test="level!=null and level!='' ">level ,</if>
+	 <if test="province!=null and province!='' ">province ,</if>
+	 <if test="status!=null and status!='' ">status </if>
+	</select> -->
+</mapper>

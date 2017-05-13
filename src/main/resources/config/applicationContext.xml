@@ -1,0 +1,66 @@
+<beans xmlns="http://www.springframework.org/schema/beans"  
+       xmlns:tx="http://www.springframework.org/schema/tx"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:context="http://www.springframework.org/schema/context"  
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:task="http://www.springframework.org/schema/task"  
+       xmlns:p="http://www.springframework.org/schema/p"   
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://www.springframework.org/schema/tx   
+       http://www.springframework.org/schema/tx/spring-tx.xsd  
+       http://www.springframework.org/schema/context   
+       http://www.springframework.org/schema/context/spring-context.xsd  
+       http://www.springframework.org/schema/aop  
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd"> 
+      
+
+	<!-- 自动扫描组件，这里要把web下面的 controller去除，他们是在spring4-servlet.xml中配置的，如果不去除会影响事务管理的。-->
+	<context:component-scan base-package="com">
+		<context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+	</context:component-scan>
+	
+    <!-- 加载数据源配置文件 -->
+	<bean id="propertyConfigurer"  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		  <property name="locations">
+				<list>
+					<value>classpath:config/jdbc.properties</value>
+				</list>
+		  </property>
+	</bean>
+	<!-- 配置数据源 -->
+	<!-- com.mchange.v2.c3p0.ComboPooledDataSource类在c3p0-0.9.1.1.jar包的com.mchange.v2.c3p0包中 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	    <property name="user"><value>${jdbc_myql.user}</value></property>
+	    <property name="password"><value>${jdbc_myql.password}</value></property>
+	    <property name="driverClass"><value>${jdbc_myql.driverClass}</value></property>
+	    <property name="jdbcUrl"><value>${jdbc_myql.jdbcUrl}</value></property>
+	    
+	    <property name="maxPoolSize"><value>${jdbc.maxPoolSize}</value></property>
+	    <property name="minPoolSize"><value>${jdbc.minPoolSize}</value></property>
+	    <property name="initialPoolSize"><value>${jdbc.initialPoolSize}</value></property>
+	    <property name="maxIdleTime"><value>${jdbc.maxIdleTime}</value></property>
+	</bean>
+	<!--配置 mybatis SqlSessionFactoryBean 
+      typeAliasesPackage:指定实体类的包名，制动将实体类名映射为别名,别名为类名
+    -->
+	<bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"/>
+	    <property name="typeAliasesPackage" value="com.entity"/>
+	    <property name="mapperLocations" value="classpath*:com/*Mapper.xml" />
+	</bean>
+	<!-- 扫描 mapper xml文件 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" 
+	    p:basePackage="com.dao"
+        p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
+    <!-- 配置spring事务 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 开启事务控制的注解支持 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+</beans>
